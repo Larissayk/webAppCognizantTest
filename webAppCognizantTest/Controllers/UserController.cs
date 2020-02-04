@@ -30,5 +30,40 @@ namespace webAppCognizantTest.Controllers
             db.SaveChanges();
             return View();
         }
+        public ActionResult ShowUser()
+        {
+            var item = db.Users.ToList();
+            return View(item);
+        }
+        public ActionResult DeleteUser(int id)
+        {
+            var item = db.Users.Where(x => x.ID == id).First();
+            db.Users.Remove(item);
+            db.SaveChanges();
+            var item2 = db.Users.ToList();
+            return View("ShowUser", item2);
+        }
+        public ActionResult EditUser(int id)
+        {
+            var item = db.Users.Where( x => x.ID == id).First();
+            return View(item);
+
+        }
+        [HttpPost]
+
+        public ActionResult EditUser(User model)
+        {
+            var item = db.Users.Where(x => x.ID == model.ID).First();
+            item.name = model.name;
+            item.email = model.email;
+            item.phone = model.phone;
+            item.address = model.address;
+            item.neighborhood = model.neighborhood;
+            item.city = model.city;
+            item.state = model.state;
+            db.SaveChanges();
+            return RedirectToAction("ShowUser");
+
+        }
     }
 }
