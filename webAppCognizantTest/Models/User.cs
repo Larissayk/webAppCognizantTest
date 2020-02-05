@@ -10,15 +10,15 @@ namespace webAppCognizantTest.Models
     {
         public int ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Campo Nome é de preenchimento obrigatório")]
         [StringLength(100)]
         public string name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Campo Email é de preenchimento obrigatório")]
         [StringLength(50)]
         public string email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Campo Celular é de preenchimento obrigatório")]
         [StringLength(20)]
         public string phone { get; set; }
 

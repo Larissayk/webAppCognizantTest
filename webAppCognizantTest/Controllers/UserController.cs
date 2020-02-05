@@ -9,8 +9,8 @@ namespace webAppCognizantTest.Controllers
 {
     public class UserController : Controller
     {
-        Model1 db = new Model1();
-        // GET: User
+        myLocalDBLYKEntities db = new myLocalDBLYKEntities();
+
         public ActionResult AddUser()
         {
             return View();
@@ -30,11 +30,13 @@ namespace webAppCognizantTest.Controllers
             db.SaveChanges();
             return View();
         }
+
         public ActionResult ShowUser()
         {
             var item = db.Users.ToList();
             return View(item);
         }
+
         public ActionResult DeleteUser(int id)
         {
             var item = db.Users.Where(x => x.ID == id).First();
@@ -43,6 +45,7 @@ namespace webAppCognizantTest.Controllers
             var item2 = db.Users.ToList();
             return View("ShowUser", item2);
         }
+
         public ActionResult EditUser(int id)
         {
             var item = db.Users.Where( x => x.ID == id).First();
@@ -50,7 +53,6 @@ namespace webAppCognizantTest.Controllers
 
         }
         [HttpPost]
-
         public ActionResult EditUser(User model)
         {
             var item = db.Users.Where(x => x.ID == model.ID).First();
